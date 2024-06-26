@@ -22,6 +22,7 @@ public class MyAppPackage implements ReactPackage {
         List<NativeModule> modules = new ArrayList<>();
 
         modules.add(new MacAddressInfoModule(reactContext));
+        modules.add(new LockScreenModule(reactContext));
 
         return modules;
     }

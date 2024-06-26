@@ -1,10 +1,24 @@
 import React from 'react'
 import { StyleSheet, Button, View } from 'react-native'
-import { getMacAddress, getMacAddressSync } from 'react-native-device-info';
+import { getMacAddress } from 'react-native-device-info';
 
-import { MacAddressInfo } from './src/components'
+import { MacAddressInfo, LockScreenModule } from './src/components'
 
 const App = () => {
+
+  const requestDeviceAdmin = () => {
+    LockScreenModule.requestDeviceAdmin();
+  }
+
+  const lockNow = () => {
+    LockScreenModule.lockNow();
+    LockScreenModule.setAlarmToWakeUp(3000);
+  }
+
+  const wakeUp = () => {
+    LockScreenModule.wakeUp();
+  };
+
   const onPress = () => {
     let response = MacAddressInfo.getMacAddressInfo();
     console.log("response", response)
@@ -12,7 +26,6 @@ const App = () => {
 
   const onPressLib = async () => {
     let response = await getMacAddress();
-    // let response = await getMacAddressSync();
     console.log("response", response)
   }
 
@@ -24,11 +37,29 @@ const App = () => {
         onPress={onPress}
 
       />
-      <View style={styles.vwLine}/>
+      <View style={styles.vwLine} />
       <Button
         title="Library"
         color="#841584"
         onPress={onPressLib}
+      />
+      <View style={styles.vwLine} />
+      <Button
+        title="Request device admin"
+        color="#841584"
+        onPress={requestDeviceAdmin}
+      />
+      <View style={styles.vwLine} />
+      <Button
+        title="Lock now"
+        color="#841584"
+        onPress={lockNow}
+      />
+      <View style={styles.vwLine} />
+      <Button
+        title="Wake up"
+        color="#841584"
+        onPress={wakeUp}
       />
     </View>
   );
@@ -40,9 +71,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  vwLine:{
-    marginBottom:10,
-    marginTop:10,
+  vwLine: {
+    marginBottom: 10,
+    marginTop: 10,
   }
 })
 
