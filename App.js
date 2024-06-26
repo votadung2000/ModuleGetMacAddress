@@ -15,10 +15,6 @@ const App = () => {
     LockScreenModule.setAlarmToWakeUp(3000);
   }
 
-  const wakeUp = () => {
-    LockScreenModule.wakeUp();
-  };
-
   const onPress = () => {
     let response = MacAddressInfo.getMacAddressInfo();
     console.log("response", response)
@@ -54,12 +50,6 @@ const App = () => {
         title="Lock now"
         color="#841584"
         onPress={lockNow}
-      />
-      <View style={styles.vwLine} />
-      <Button
-        title="Wake up"
-        color="#841584"
-        onPress={wakeUp}
       />
     </View>
   );
