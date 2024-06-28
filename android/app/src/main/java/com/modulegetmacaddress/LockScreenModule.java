@@ -63,4 +63,11 @@ public class LockScreenModule extends ReactContextBaseJavaModule {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
     }
 
+    @ReactMethod
+    public void wakeUpScreen() {
+        Context context = getReactApplicationContext();
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        context.sendBroadcast(intent);
+    }
+
 }
